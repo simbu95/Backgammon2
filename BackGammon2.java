@@ -34,47 +34,48 @@ public class BackGammon2 {
     public static void main(String[] args) {
         POAI = 0 == JOptionPane.showConfirmDialog(null, "Is Player O an AI?", "AI", JOptionPane.YES_NO_OPTION);
         PXAI = 0 == JOptionPane.showConfirmDialog(null, "Is Player X an AI?", "AI", JOptionPane.YES_NO_OPTION);
-        JFrame frame = new JFrame();
-        JFrame frame2 = new JFrame();
+        JFrame frame = setupBoard();
+        JFrame frame2 = setupPast();
+        frame2.setVisible(true);
+        frame.setVisible(true);
+        init();
+    }
+
+    public static JFrame setupBoard() {
+        JFrame setup = new JFrame();
         JPanel pan = new JPanel(new GridLayout(1, 2));
-        JPanel pan2 = new JPanel(new GridLayout(1, 3));
         area.setPreferredSize(new Dimension(350, 250));
         area.setEditable(false);
+        pan.add(area);
+        Font ft = new Font("monospaced", Font.PLAIN, 12);
+        area.setFont(ft);
+        area.setText(Gameboard.displayBoard());
+        pan.add(CreatePanel());
+        setup.add(pan);
+        setup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setup.pack();
+        return setup;
+    }
+
+    public static JFrame setupPast() {
+        JFrame setup = new JFrame();
+        JPanel pan = new JPanel(new GridLayout(1, 3));
         area2.setPreferredSize(new Dimension(350, 250));
         area2.setEditable(false);
-        pan.add(area);
-        pan2.add(area2);
+        pan.add(area2);
         JButton but1 = new JButton("Left");
         but1.addActionListener(act2());
         JButton but2 = new JButton("Right");
         but2.addActionListener(act3());
-        pan2.add(but1);
-        pan2.add(but2);
+        pan.add(but1);
+        pan.add(but2);
         Font ft = new Font("monospaced", Font.PLAIN, 12);
-        area.setFont(ft);
-        area.setText(Gameboard.displayBoard());
         area2.setFont(ft);
         area2.setText(Gameboard.displayBoard());
-        pan.add(CreatePanel());
-        frame.add(pan);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame2.add(pan2);
-        frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame2.pack();
-        frame2.setVisible(true);
-        frame.setVisible(true);
-        while (Gameboard.getDie1() == Gameboard.getDie2()) {
-            Gameboard.rollDie();
-        }
-        BoardSave.add(new Board(Gameboard));
-        dice.setText(Gameboard.getDie1() + "," + Gameboard.getDie2() + "," + Gameboard.getDie3() + "," + Gameboard.getDie4());
-        if (Gameboard.getDie1() > Gameboard.getDie2()) {
-            Gameboard.nextturn();
-            turn = !turn;
-            turnlab.setText("Player X");
-        }
-        //AIGO();
+        setup.add(pan);
+        setup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setup.pack();
+        return setup;
     }
 
     public static void init() {
@@ -92,6 +93,7 @@ public class BackGammon2 {
             turn = !turn;
             turnlab.setText("Player X");
         }
+        dice.setText(Gameboard.getDie1() + "," + Gameboard.getDie2() + "," + Gameboard.getDie3() + "," + Gameboard.getDie4());
     }
 
     public static JPanel CreatePanel() {

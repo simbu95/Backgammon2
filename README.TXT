@@ -1,9 +1,10 @@
 ***New Edit*** 1/18/2017
 
 I updated the Doubling function so it is easier to access and building the AI decisions into it will be easier.
-The bottom of Backgammon2.jar (lines 297-302) now contains 2 functions that the AI calls to determine if it show double and if it should accept a double.
-Since I updated Backgammon2.jar, the AI portion for move decisions begins on line 252 now. 
+The bottom of Backgammon2.jar (lines 299-305) now contains 2 functions that the AI calls to determine if it show double and if it should accept a double.
+Since I updated Backgammon2.jar, the AI portion for move decisions begins on line 254 now. 
 As well, The game now asks at the start which players are AI and which are human. 
+Some minor cleaning of the main function so it is more presentable. 
 
 ***Original Text*** 1/17/2017
 
