@@ -43,7 +43,6 @@ public class CommTest {
                     }
                     
                 }
-                System.out.println(count);
                 if(count>0){
                     System.out.println("N");
                 }
